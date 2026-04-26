@@ -1,0 +1,1311 @@
+/* Therapist Dashboard Styles */
+.therapist-dashboard-container {
+  min-height: 100vh;
+  background: 
+    /* Dark gradient with teal/cyan-blue glow in center */
+    radial-gradient(ellipse at center, rgba(20, 184, 166, 0.15) 0%, rgba(6, 182, 212, 0.1) 25%, transparent 70%),
+    radial-gradient(ellipse at center, rgba(8, 145, 178, 0.12) 0%, transparent 50%),
+    /* Deep navy to black gradient at edges */
+    linear-gradient(135deg, #0f172a 0%, #1e293b 20%, #334155 35%, #1e293b 65%, #0f172a 100%),
+    /* Subtle overlay pattern */
+    linear-gradient(90deg, transparent 48%, rgba(255, 255, 255, 0.01) 49%, rgba(255, 255, 255, 0.01) 51%, transparent 52%),
+    linear-gradient(0deg, transparent 48%, rgba(255, 255, 255, 0.01) 49%, rgba(255, 255, 255, 0.01) 51%, transparent 52%);
+  background-size: 
+    80% 60%,
+    60% 40%,
+    100% 100%,
+    60px 60px,
+    60px 60px;
+  background-position:
+    center center,
+    center center,
+    0% 0%,
+    0 0,
+    0 0;
+  animation: darkGradientShift 25s ease infinite, subtlePulse 12s ease-in-out infinite alternate;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  color: white;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* Add medical-themed floating elements */
+.therapist-dashboard-container::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M28 32h4v4h-4z'/%3E%3Cpath d='M32 28v8h-8v-4h4v-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='20' cy='20' r='2'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 60px 60px, 40px 40px;
+  background-position: 0 0, 30px 30px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Add subtle medical icons as decorative elements */
+.therapist-dashboard-container::after {
+  content: '';
+  position: fixed;
+  top: 10%;
+  right: 5%;
+  width: 200px;
+  height: 200px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z' fill='%23ffffff' fill-opacity='0.05'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.6;
+  animation: floatMedical 12s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes darkGradientShift {
+  0% { background-position: center center, center center, 0% 50%, 0 0, 0 0; }
+  25% { background-position: 45% 40%, 40% 45%, 25% 75%, 15px 15px, 15px 15px; }
+  50% { background-position: 55% 60%, 60% 55%, 100% 50%, 30px 30px, 30px 30px; }
+  75% { background-position: 60% 45%, 55% 40%, 75% 25%, 45px 45px, 45px 45px; }
+  100% { background-position: center center, center center, 0% 50%, 0 0, 0 0; }
+}
+
+@keyframes subtlePulse {
+  0% { 
+    filter: brightness(1) saturate(1);
+  }
+  100% { 
+    filter: brightness(1.03) saturate(1.05);
+  }
+}
+
+@keyframes floatMedical {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg) scale(1);
+    opacity: 0.3;
+  }
+  25% { 
+    transform: translateY(-20px) rotate(90deg) scale(1.1);
+    opacity: 0.6;
+  }
+  50% { 
+    transform: translateY(-10px) rotate(180deg) scale(0.9);
+    opacity: 0.4;
+  }
+  75% { 
+    transform: translateY(-30px) rotate(270deg) scale(1.05);
+    opacity: 0.5;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.therapist-main-content {
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  overflow: visible;
+  contain: layout;
+}
+
+/* Header Styles */
+.therapist-dashboard-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 2rem 0;
+  position: relative;
+  background: 
+    radial-gradient(ellipse at center, rgba(59, 130, 246, 0.1) 0%, transparent 60%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+}
+
+.therapist-dashboard-header::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM18 14H13V19H11V14H6V12H11V7H13V12H18V14Z' fill='%2359a6fb' fill-opacity='0.6'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.therapist-dashboard-header::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12S6.48 22 12 22 22 17.52 22 12 17.52 2 12 2ZM17 13H13V17H11V13H7V11H11V7H13V12H18V13Z' fill='%2310b981' fill-opacity='0.6'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: pulse 3s ease-in-out infinite 1.5s;
+}
+
+.therapist-dashboard-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.5rem;
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(59, 130, 246, 0.3),
+    0 0 40px rgba(59, 130, 246, 0.1);
+  line-height: 1.2;
+  background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #c7d2fe 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.therapist-dashboard-title::before {
+  content: '🩺';
+  position: absolute;
+  left: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.7em;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.therapist-dashboard-title::after {
+  content: '💊';
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.7em;
+  animation: pulse 2s ease-in-out infinite 1s;
+}
+
+.therapist-dashboard-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  margin-bottom: 1rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.therapist-dashboard-subtitle::before {
+  content: '⚕️';
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.therapist-dashboard-subtitle::after {
+  content: '🔬';
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+  animation: pulse 3s ease-in-out infinite 1.5s;
+}
+
+.therapist-header-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.therapist-welcome-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.therapist-logout-button {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.therapist-logout-button:hover {
+  background: rgba(239, 68, 68, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Glass morphism effect with medical theme */
+.therapist-glass-card {
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.08) 100%),
+    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    0 2px 8px rgba(59, 130, 246, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+}
+
+.therapist-glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.therapist-glass-card:hover {
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.12) 100%),
+    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.12) 0%, transparent 50%);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 
+    0 16px 48px rgba(0, 0, 0, 0.15),
+    0 4px 16px rgba(59, 130, 246, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.therapist-glass-card:hover::before {
+  opacity: 1;
+}
+
+/* Grid Layouts */
+.therapist-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.therapist-children-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.therapist-analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.therapist-game-performance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.therapist-analysis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Stat Card Styles */
+.therapist-stat-card {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: default;
+}
+
+.therapist-stat-card:hover {
+  transform: translateY(-2px);
+}
+
+.therapist-stat-content h3 {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.therapist-stat-title {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.therapist-stat-value {
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  line-height: 1;
+}
+
+.therapist-stat-trend {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;
+}
+
+.therapist-trend-text {
+  font-size: 0.75rem;
+}
+
+.therapist-stat-icon {
+  padding: 1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.therapist-icon-blue { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+.therapist-icon-green { background: rgba(34, 197, 94, 0.2); color: #4ade80; }
+.therapist-icon-purple { background: rgba(147, 51, 234, 0.2); color: #a78bfa; }
+.therapist-icon-orange { background: rgba(249, 115, 22, 0.2); color: #fb923c; }
+
+/* Child Card Styles */
+.therapist-child-card {
+  padding: 1.5rem;
+  cursor: pointer;
+}
+
+.therapist-child-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.therapist-child-name {
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.therapist-child-age {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.875rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.therapist-child-scores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.therapist-score-item {
+  text-align: center;
+}
+
+.therapist-score-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.therapist-score-value {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.therapist-progress-section {
+  margin-bottom: 1rem;
+}
+
+.therapist-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+}
+
+.therapist-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.therapist-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4ade80, #22c55e);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.therapist-risk-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.therapist-risk-low {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.therapist-risk-moderate {
+  background: rgba(249, 115, 22, 0.2);
+  color: #fb923c;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+}
+
+.therapist-risk-high {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Analysis View */
+.therapist-analysis-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.therapist-analysis-title {
+  color: white;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  margin: 0;
+}
+
+.therapist-back-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+}
+
+.therapist-back-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Chart Styles */
+.therapist-chart-container {
+  padding: 1.5rem;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.therapist-chart-title {
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.therapist-chart-wrapper {
+  flex: 1;
+  min-height: 0;
+}
+
+/* Game Card Styles */
+.therapist-game-card {
+  padding: 1.5rem;
+}
+
+.therapist-game-title {
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.therapist-game-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.therapist-game-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+}
+
+.therapist-game-stat-value {
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.therapist-improvement-positive {
+  color: #4ade80;
+  font-weight: 600;
+}
+
+/* Summary Styles */
+.therapist-analysis-summary {
+  padding: 2rem;
+}
+/* Emotion Table Styles */
+.therapist-emotion-history {
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.therapist-emotion-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.therapist-emotion-table th,
+.therapist-emotion-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: left;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.therapist-emotion-table th {
+  color: white;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.therapist-emotion-table tr:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+
+.therapist-summary-title {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.therapist-summary-section {
+  margin-bottom: 1.5rem;
+}
+
+.therapist-summary-section h4 {
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.therapist-summary-section p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.therapist-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.therapist-tag {
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.therapist-tag-strength {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.therapist-tag-challenge {
+  background: rgba(249, 115, 22, 0.2);
+  color: #fb923c;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+}
+
+.therapist-summary-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.therapist-metric-item {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+}
+
+.therapist-metric-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.therapist-metric-value {
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+}
+
+.therapist-metric-positive {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+}
+
+.therapist-metric-warning {
+  background: rgba(249, 115, 22, 0.2);
+  color: #fb923c;
+}
+
+.therapist-metric-danger {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+/* Section Headers */
+.therapist-section-header {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Footer */
+.therapist-dashboard-footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.therapist-footer-text {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* Loading and Error States */
+.therapist-loading,
+.therapist-error-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem;
+  min-height: 400px;
+}
+
+.therapist-loading p,
+.therapist-error-message p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.125rem;
+  margin-top: 1rem;
+}
+
+.therapist-error-message h2 {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.therapist-retry-button {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.therapist-retry-button:hover {
+  background: rgba(59, 130, 246, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Additional medical floating elements */
+.therapist-dashboard-container .medical-float-1 {
+  position: fixed;
+  top: 30%;
+  left: 8%;
+  width: 80px;
+  height: 80px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14.5 10.33C14.36 9.76 13.76 9.5 13.26 9.81L12 10.5L10.74 9.81C10.24 9.5 9.64 9.76 9.5 10.33L9 12L7.33 12.5C6.76 12.64 6.5 13.24 6.81 13.74L7.5 15L6.81 16.26C6.5 16.76 6.76 17.36 7.33 17.5L9 18L9.5 19.67C9.64 20.24 10.24 20.5 10.74 20.19L12 19.5L13.26 20.19C13.76 20.5 14.36 20.24 14.5 19.67L15 18L16.67 17.5C17.24 17.36 17.5 16.76 17.19 16.26L16.5 15L17.19 13.74C17.5 13.24 17.24 12.64 16.67 12.5L15 12L14.5 10.33M12 15.5C10.62 15.5 9.5 14.38 9.5 13S10.62 10.5 12 10.5 14.5 11.62 14.5 13 13.38 15.5 12 15.5Z' fill='%2310b981' fill-opacity='0.4'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: floatMedical 15s ease-in-out infinite 2s;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.therapist-dashboard-container .medical-float-2 {
+  position: fixed;
+  bottom: 20%;
+  right: 10%;
+  width: 60px;
+  height: 60px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 2V5H2V7H6V10H8V7H12V5H8V2H6M19 7V9H22V11H19V14H17V11H14V9H17V7H19M12 11V13H15V15H12V18H14V15H17V13H14V11H12Z' fill='%235b21b6' fill-opacity='0.3'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: floatMedical 18s ease-in-out infinite 4s;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Enhanced responsiveness */
+@media (max-width: 768px) {
+  .therapist-dashboard-title::before,
+  .therapist-dashboard-title::after {
+    display: none;
+  }
+  
+  .therapist-dashboard-subtitle::before,
+  .therapist-dashboard-subtitle::after {
+    font-size: 1em;
+  }
+  
+  .therapist-dashboard-header::before,
+  .therapist-dashboard-header::after {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .medical-float-1,
+  .medical-float-2 {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .therapist-dashboard-subtitle::before,
+  .therapist-dashboard-subtitle::after {
+    display: none;
+  }
+}
+
+/* Comments System Styles */
+.therapist-comments-section {
+  padding: 1.5rem;
+  margin-top: 1rem;
+  position: relative;
+  z-index: 50;
+  overflow: visible;
+}
+
+.therapist-expanded-comments {
+  margin-top: 2rem;
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: 200px;
+  position: relative;
+  z-index: 50;
+  overflow: visible;
+}
+
+.therapist-comments-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.therapist-comments-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.therapist-comments-count {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.therapist-add-comment {
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 60;
+  overflow: visible;
+}
+
+.therapist-comment-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 0.75rem;
+  color: white;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 80px;
+  font-family: inherit;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 100;
+  overflow: auto;
+  /* Fix textarea scroll behavior */
+  scroll-behavior: auto;
+  scroll-margin: 0;
+  /* Prevent auto-scroll on focus */
+  -webkit-overflow-scrolling: touch;
+  /* Ensure proper text flow */
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  /* Prevent zoom on mobile */
+  -webkit-text-size-adjust: 100%;
+}
+
+.therapist-comment-input:focus {
+  outline: none;
+  border-color: rgba(59, 130, 246, 0.5);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  position: relative;
+  z-index: 101;
+  /* Prevent scrolling when focusing */
+  scroll-behavior: auto;
+  /* Maintain scroll position */
+  scroll-margin-top: 0;
+  scroll-margin-bottom: 0;
+}
+
+.therapist-comment-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Fix for textarea scroll issues */
+.therapist-comment-input,
+.therapist-comment-input:focus {
+  scroll-margin-top: 0;
+  scroll-behavior: auto;
+}
+
+/* Prevent scroll interference from floating elements */
+.therapist-dashboard-container::before,
+.therapist-dashboard-container::after,
+.medical-float-1,
+.medical-float-2 {
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Additional scroll fixes for comments section */
+.therapist-comments-section {
+  /* Prevent scroll jumping */
+  scroll-behavior: auto;
+  /* Contain layout shifts */
+  contain: layout style;
+}
+
+.therapist-add-comment {
+  /* Prevent parent scroll when focusing textarea */
+  contain: layout;
+  /* Ensure stable positioning */
+  transform: translateZ(0);
+  will-change: auto;
+}
+
+/* Ensure smooth interaction with comment input */
+.therapist-add-comment .therapist-comment-input {
+  /* Prevent viewport jumping */
+  transform: translateZ(0);
+  /* Disable scroll restoration */
+  overscroll-behavior: contain;
+}
+.therapist-dashboard-container::after,
+.medical-float-1,
+.medical-float-2 {
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Ensure comments section is properly contained */
+.therapist-glass-card.therapist-comments-section {
+  contain: layout style;
+  isolation: isolate;
+}
+
+.therapist-comment-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.therapist-add-comment-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.therapist-add-comment-btn:hover:not(:disabled) {
+  background: rgba(59, 130, 246, 0.3);
+  transform: translateY(-1px);
+}
+
+.therapist-add-comment-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.therapist-save-comment-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.therapist-save-comment-btn:hover:not(:disabled) {
+  background: rgba(34, 197, 94, 0.3);
+  transform: translateY(-1px);
+}
+
+.therapist-save-comment-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.therapist-cancel-comment-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.therapist-cancel-comment-btn:hover {
+  background: rgba(239, 68, 68, 0.3);
+  transform: translateY(-1px);
+}
+
+.therapist-comments-list {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.therapist-comments-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.therapist-comments-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.therapist-comments-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.therapist-comments-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.therapist-no-comments {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.therapist-no-comments svg {
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.therapist-no-comments p {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin: 0 0 0.5rem 0;
+}
+
+.therapist-no-comments span {
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+.therapist-comment-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.therapist-comment-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.therapist-comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.therapist-comment-author {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.therapist-edited-tag {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.therapist-comment-date {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem;
+}
+
+.therapist-comment-content {
+  position: relative;
+}
+
+.therapist-comment-text {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+  word-wrap: break-word;
+}
+
+.therapist-comment-controls {
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.therapist-comment-item:hover .therapist-comment-controls {
+  opacity: 1;
+}
+
+.therapist-edit-comment-btn,
+.therapist-delete-comment-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.75rem;
+}
+
+.therapist-edit-comment-btn:hover {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.therapist-delete-comment-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.therapist-edit-comment {
+  margin-top: 0.5rem;
+}
+
+.therapist-child-actions {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.therapist-comments-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  background: rgba(139, 92, 246, 0.2);
+  color: #a78bfa;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+  font-weight: 500;
+  justify-content: center;
+}
+
+.therapist-comments-toggle-btn:hover {
+  background: rgba(139, 92, 246, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Responsive adjustments for comments */
+@media (max-width: 768px) {
+  .therapist-comment-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .therapist-comment-actions {
+    flex-direction: column;
+  }
+  
+  .therapist-add-comment-btn,
+  .therapist-save-comment-btn,
+  .therapist-cancel-comment-btn {
+    justify-content: center;
+  }
+}
